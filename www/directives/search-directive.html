@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>{{movieSearch.title}}</label>
+
+    <form name="test">
+        <input type="text" class="form-control" ng-model="search.text">
+    </form>
+</div>
+<div ng-show="alert.show" uib-alert ng-class="'alert-' + (alert.type)">{{alert.msg}}</div>
