@@ -8,8 +8,6 @@ angular.module('searchService', [])
         this.getSearchResults = function(){ return searchResults };
 
         this.makeSearch = function(text){
-            console.log("making search");
-            console.log(text);
             return new Promise(function(resolve, reject){
                 $http.get(searchUrl + text)
                     .then(function(results){
