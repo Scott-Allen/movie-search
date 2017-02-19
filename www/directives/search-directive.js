@@ -4,9 +4,6 @@ angular.module('searchDirective', [])
             restrict: 'A',
             templateUrl: 'directives/search-directive.html',
             controller: function($scope, searchMoviesAPI){
-                scope: {
-                    movies: '='
-                }
                 $scope.movieSearch = {
                     title: "Movie Name:",
                     text: "Django"
@@ -30,16 +27,17 @@ angular.module('searchDirective', [])
                                     $scope.filmResults = results;
                                     $scope.alert.show = false;
                                 } else {
-                                    $scope.alert.type = "warning";
+                                    $scope.alert.show = false;
+
+                                    // Removed as does not reload fast enough, makes for confusing UX
+                                    /*$scope.alert.type = "warning";
                                     $scope.alert.msg = "No Films Found";
-                                    $scope.alert.show = true;
-                                    $scope.show = true;
+                                    $scope.alert.show = true;*/
                                 }
                             }, function(err){
                                 $scope.alert.type = "danger";
                                 $scope.alert.msg = "Endpoint not responsing: unavailable";
                                 $scope.alert.show = true;
-                                $scope.show = true;
                             })
                     });
             }
