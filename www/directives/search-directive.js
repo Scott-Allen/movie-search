@@ -1,10 +1,9 @@
 angular.module('searchDirective', [])
-    .directive("searchMovies", function(){
+    .directive('searchMovies', function(){
         return{
             restrict: 'A',
-            templateUrl: "directives/search-directive.html",
-            scope:{},
-            controller: function($scope, $http, searchMoviesAPI){
+            templateUrl: 'directives/search-directive.html',
+            controller: function($scope, searchMoviesAPI){
                 scope: {
                     movies: '='
                 }
