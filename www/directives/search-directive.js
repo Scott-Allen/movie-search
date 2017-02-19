@@ -4,7 +4,7 @@ angular.module('searchDirective', [])
             restrict: 'A',
             templateUrl: "directives/search-directive.html",
             scope:{},
-            controller: function($scope, $http){
+            controller: function($scope, $http, searchMoviesAPI){
                 scope: {
                     movies: '='
                 }
@@ -12,8 +12,6 @@ angular.module('searchDirective', [])
                     title: "Movie Name:",
                     text: "Django"
                 };
-
-                var searchUrl = "http://www.omdbapi.com/?s=";
 
                 $scope.filmResults = {};
 
@@ -26,15 +24,13 @@ angular.module('searchDirective', [])
                 $scope.show = true;
 
                 $scope.$watch('search.text',
-                    function(newVal, oldVal) {
-                        $http.get(searchUrl + newVal)
+                    function(newVal) {
+                        searchMoviesAPI.makeSearch(newVal)
                             .then(function(results){
-                                if (results.data.Search){
-                                    console.log("Search Exists");
-                                    $scope.filmResults = results.data.Search;
+                                if (results.length > 0){
+                                    $scope.filmResults = results;
                                     $scope.alert.show = false;
                                 } else {
-                                    console.log("No Films Found");
                                     $scope.alert.type = "warning";
                                     $scope.alert.msg = "No Films Found";
                                     $scope.alert.show = true;

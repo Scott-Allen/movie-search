@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('app', ['ui.router', 'navController', 'searchDirective', 'ngAnimate', 'ui.bootstrap']);
+	var app = angular.module('app', ['ui.router', 'navController', 'searchDirective', 'searchService', 'ngAnimate', 'ui.bootstrap']);
 
 	// define for requirejs loaded modules
 	define('app', [], function() { return app; });
