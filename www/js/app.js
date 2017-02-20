@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('app', ['ui.router', 'navController', 'searchDirective', 'listMoviesDirective', 'searchService', 'ngAnimate', 'ui.bootstrap']);
+	var app = angular.module('app', ['ui.router', 'navController', 'searchDirective', 'listMoviesDirective', 'movieDirective', 'searchService', 'movieService', 'ngAnimate', 'ui.bootstrap']);
 
 	// define for requirejs loaded modules
 	define('app', [], function() { return app; });
@@ -25,7 +25,7 @@
 	}
 
 	app.config(function($stateProvider, $urlRouterProvider, $controllerProvider){
-		var origController = app.controller
+		var origController = app.controller;
 		app.controller = function (name, constructor){
 			$controllerProvider.register(name, constructor);
 			return origController.apply(this, arguments);
@@ -45,12 +45,34 @@
 					pageTitle: 'Home'
 				}
 			})
+            .state('movie', {
+                url: "/movie/{movieTitle}",
+                templateUrl: viewsPrefix + "movie.html",
+                data: {
+                    pageTitle: 'Movie'
+                },
+				controller: function($scope, $stateParams, getMovieAPI){
+                	console.log("route params");
+                	$scope.movieTitle = $stateParams.movieTitle;
+                	$scope.movie = {Year: 2000};
+                    getMovieAPI.getMovie($scope.movieTitle)
+						.then(function(movie){
+							console.log("--movie--");
+							$scope.movie = movie;
+							console.log($scope.movie);
+						}, function(err){
+							console.log(err);
+						})
+				}
+            })
 	})
 	.directive('updateTitle', ['$rootScope', '$timeout',
 		function($rootScope, $timeout) {
 			return {
 				link: function(scope, element) {
 					var listener = function(event, toState) {
+						console.log("toState");
+						console.log(toState);
 						var title = 'Movie Search';
 						if (toState.data && toState.data.pageTitle) title = toState.data.pageTitle + ' - ' + title;
 						$timeout(function() {
