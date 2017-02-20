@@ -1,7 +1,7 @@
 <div>
     <table width = 100%>
         <tr ng-repeat="movie in movies">
-            <td width="60%"> <a href="#/">{{movie.Title}}</a></td>
+            <td width="60%"> <a href="#/movie/{{movie.Title}}">{{movie.Title}}</a></td>
             <td width="20%">{{movie.Year}}</td>
             <td width="20%"> <a target="_blank" href="http://www.imdb.com/title/{{movie.imdbID}}"><img width="65" src="http://ia.media-imdb.com/images/M/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@._V1_.png"></a></td>
         </tr>

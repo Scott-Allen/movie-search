@@ -1,0 +1,47 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            Directed By {{movie.Director}}, Rated {{movie.Rated}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <img style="margin:0px auto;display:block" width="200" src="{{movie.Poster}}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center;">
+            IMDB Rating {{movie.imdbRating}} ({{movie.imdbVotes}} votes)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="text-align:center;">
+            <b>Year:</b> {{movie.Year}} <br/>
+            <b>Rated:</b> {{movie.Rated}} <br/>
+            <b>Released:</b> {{movie.Year}} <br/>
+        </div>
+        <div class="col-md-6" style="text-align:center;">
+            <b>Runtime:</b> {{movie.Runtime}} <br/>
+            <b>Genre(s):</b> {{movie.Genre}} <br/>
+            <b>Country:</b>  {{movie.Country}} <br/>
+        </div>
+    </div>
+    <div class="row">
+        <accordion>
+            <accordion-group heading="Starring">
+                {{movie.Actors}}
+            </accordion-group>
+            <accordion-group heading="Writers">
+                {{movie.Writer}}
+            </accordion-group>
+            <accordion-group heading="Languages">
+                {{movie.Language}}
+            </accordion-group>
+        </accordion>
+    </div>
+
+
+
+</div>
+

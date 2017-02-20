@@ -6,7 +6,7 @@ angular.module('searchDirective', [])
             controller: function($scope, searchMoviesAPI){
                 $scope.movieSearch = {
                     title: "Movie Name:",
-                    text: "Django"
+                    text: ""
                 };
 
                 $scope.filmResults = {};

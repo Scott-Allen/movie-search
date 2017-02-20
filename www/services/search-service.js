@@ -9,6 +9,10 @@ angular.module('searchService', [])
 
         this.makeSearch = function(text){
             return new Promise(function(resolve, reject){
+                if (!text){
+                    text = "Django Unchained"
+                }
+
                 $http.get(searchUrl + text)
                     .then(function(results){
                         if (results.data.Search){
